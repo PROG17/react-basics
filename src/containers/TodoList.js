@@ -31,7 +31,10 @@ export default class TodoList extends Component {
   };
 
   doSave() {
+    // Check that input contains at least 2 chars
     if (this.state.input.length > 1) {
+      // Create new object and copy contents into it
+      // Use the ...spread operator to copy existing todos
       const newState = {
         input: "",
         todos: [
@@ -48,6 +51,7 @@ export default class TodoList extends Component {
   }
 
   renderClearButton() {
+    // Show clear button if list has items
     if (this.state.todos.length) {
       return (
         <button
@@ -58,18 +62,17 @@ export default class TodoList extends Component {
         </button>
       );
     }
+    // Return null if nothing is to be rendered
     return null;
   }
 
   handleClearTodos = () => {
-    const newState = {
-      input: "",
-      todos: []
-    };
-    this.setState(newState);
+    // Reset list
+    this.setState(initialState);
   };
 
   renderEmptyMessage() {
+    // Show message if list is empty
     if (!this.state.todos.length) {
       return (
         <p className="text-muted text-center">
@@ -77,6 +80,7 @@ export default class TodoList extends Component {
         </p>
       );
     }
+    // Return null if nothing is to be rendered
     return null;
   }
 
