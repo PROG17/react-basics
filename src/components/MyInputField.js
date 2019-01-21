@@ -24,14 +24,25 @@ class MyInputField extends React.Component {
   render() {
     console.log("I am in .render()");
     return (
-      <div>
-        <h1>Hello {this.state.input || "World!"}</h1>
-        <input
-          type="text"
-          value={this.state.input}
-          onChange={this.handleChange}
-        />
-        <button onClick={this.handleClick}>Save</button>
+      <div className="container py-4">
+        <div className="row">
+          <div className="col-8">
+            <input
+              className="form-control"
+              type="text"
+              value={this.state.input}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="col-4">
+            <button
+              className="btn btn-primary btn-block"
+              onClick={this.handleClick}
+            >
+              Save
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
