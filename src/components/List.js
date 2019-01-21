@@ -1,11 +1,11 @@
 import React from "react";
 
+import ListItem from "./ListItem";
+
 export default props => (
   <ul className="list-group">
     {props.todos.map(item => (
-      <li className="list-group-item" key={item.id}>
-        {item.name}
-      </li>
+      <ListItem item={item} key={item.id} />
     ))}
   </ul>
 );
