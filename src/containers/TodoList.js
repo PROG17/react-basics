@@ -71,6 +71,22 @@ export default class TodoList extends Component {
     this.setState(initialState);
   };
 
+  handleToggleDone = item => {
+    // Add code laterz
+    const todos = this.state.todos.map(todo => {
+      if (todo.id === item.id) {
+        todo.isDone = !todo.isDone;
+      }
+      return todo;
+    });
+    this.setState({ ...this.state, todos });
+  };
+
+  handleDelete = item => {
+    const todos = this.state.todos.filter(todo => todo.id !== item.id);
+    this.setState({ ...this.state, todos });
+  };
+
   renderEmptyMessage() {
     // Show message if list is empty
     if (!this.state.todos.length) {
@@ -111,7 +127,11 @@ export default class TodoList extends Component {
             </div>
           </div>
 
-          <List todos={this.state.todos} />
+          <List
+            todos={this.state.todos}
+            handleToggleDone={this.handleToggleDone}
+            handleDelete={this.handleDelete}
+          />
           {this.renderClearButton()}
           {this.renderEmptyMessage()}
         </div>
