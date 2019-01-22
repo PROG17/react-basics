@@ -6,6 +6,9 @@ import NewsList from "../components/NewsList";
 
 const initialState = { stories: [] };
 
+const baseURL =
+  "https://beta.stockzoom.com/api/v1/unistream/stories/?page_size=20";
+
 export default class NewsContainer extends Component {
   constructor(props) {
     super(props);
@@ -14,12 +17,14 @@ export default class NewsContainer extends Component {
   }
 
   componentDidMount() {
-    const url =
-      "https://beta.stockzoom.com/api/v1/unistream/stories/?page_size=40";
+    this.fetch();
+  }
 
+  fetch(url = baseURL) {
     const onSuccess = ({ data }) => {
       this.setState({
         ...this.state,
+        next: data.next,
         stories: [...this.state.stories, ...data.results]
       });
     };
@@ -34,11 +39,16 @@ export default class NewsContainer extends Component {
       .catch(onError);
   }
 
+  handleLoadMore = () => {
+    this.fetch(this.state.next);
+  };
+
   render() {
     return (
-      <div>
-        <NewsList stories={this.state.stories} />
-      </div>
+      <NewsList
+        stories={this.state.stories}
+        handleLoadMore={this.handleLoadMore}
+      />
     );
   }
 }
