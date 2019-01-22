@@ -14,13 +14,14 @@ export default class NewsContainer extends Component {
   componentDidMount() {
     const url = "https://beta.stockzoom.com/api/v1/unistream/stories/";
 
-    function onSuccess({ data }) {
+    const onSuccess = ({ data }) => {
       console.log(data);
-    }
+      this.setState({ stories: [...this.state.stories, ...data.results] });
+    };
 
-    function onError() {
+    const onError = () => {
       console.log("Error");
-    }
+    };
 
     axios
       .get(url)
@@ -29,6 +30,15 @@ export default class NewsContainer extends Component {
   }
 
   render() {
-    return <div>Hello NewsContainer!</div>;
+    console.log("state", this.state);
+    return (
+      <div>
+        <ul>
+          {this.state.stories.map(story => (
+            <li>{story.heading}</li>
+          ))}
+        </ul>
+      </div>
+    );
   }
 }
