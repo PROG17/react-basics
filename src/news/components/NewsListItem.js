@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+import TimeAgo from "react-timeago";
 import { Collapse } from "reactstrap";
 
 export default class NewsListItem extends Component {
@@ -29,7 +30,13 @@ export default class NewsListItem extends Component {
       <div className="card mb-3" onClick={this.toggleCollapse}>
         {renderImage()}
         <div className="card-body p-3">
-          <p className="mb-0">{story.heading}</p>
+          <p>{story.heading}</p>
+          <p className="mb-0 text-muted">
+            <small>
+              {story.provider.name} &middot;{" "}
+              <TimeAgo date={story.published_at} />
+            </small>
+          </p>
           <Collapse isOpen={this.state.collapse}>
             <p className="mt-2">
               <small>{story.summary || story.body}</small>

@@ -8031,6 +8031,11 @@ react-scripts@2.1.3:
   optionalDependencies:
     fsevents "1.2.4"
 
+react-timeago@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/react-timeago/-/react-timeago-4.3.0.tgz#ff47bb12c3c2a40bc31e6b3e457f5ac4a690a3ec"
+  integrity sha512-q89RXb4K16xyDdy2GR/mIRYrDw8ll/RlohSIgjCr1J85eHKeL/XEl4XPKICMdJnJpaXwRzOjlsdnEuxWsi61RQ==
+
 react-transition-group@^2.3.1:
   version "2.5.3"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.5.3.tgz#26de363cab19e5c88ae5dbae105c706cf953bb92"
