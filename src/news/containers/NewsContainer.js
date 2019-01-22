@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import axios from "axios";
 
+import NewsList from "../components/NewsList";
+
 const initialState = { stories: [] };
 
 export default class NewsContainer extends Component {
@@ -12,11 +14,14 @@ export default class NewsContainer extends Component {
   }
 
   componentDidMount() {
-    const url = "https://beta.stockzoom.com/api/v1/unistream/stories/";
+    const url =
+      "https://beta.stockzoom.com/api/v1/unistream/stories/?page_size=40";
 
     const onSuccess = ({ data }) => {
-      console.log(data);
-      this.setState({ stories: [...this.state.stories, ...data.results] });
+      this.setState({
+        ...this.state,
+        stories: [...this.state.stories, ...data.results]
+      });
     };
 
     const onError = () => {
@@ -30,14 +35,9 @@ export default class NewsContainer extends Component {
   }
 
   render() {
-    console.log("state", this.state);
     return (
       <div>
-        <ul>
-          {this.state.stories.map(story => (
-            <li>{story.heading}</li>
-          ))}
-        </ul>
+        <NewsList stories={this.state.stories} />
       </div>
     );
   }
