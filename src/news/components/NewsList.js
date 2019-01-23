@@ -6,7 +6,11 @@ export default props => {
   return (
     <div className="container">
       {props.stories.map(story => (
-        <NewsListItem story={story} key={story.slug} />
+        <NewsListItem
+          story={story}
+          key={story.slug}
+          handleHideStory={props.handleHideStory}
+        />
       ))}
       <button
         className="btn btn-primary btn-block"
